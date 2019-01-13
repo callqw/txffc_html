@@ -5,8 +5,9 @@
 //爬虫
 const crawling = require('./splider/crawling')
 const crawlingSelect = require('./splider/select')
+const newsSelect = require('./news/select')
 
 module.exports = {
-    crawling: crawling,
-    crawlingSelect: crawlingSelect
+    crawling: crawling, crawlingSelect: crawlingSelect,
+    newsSelect: newsSelect
 }
