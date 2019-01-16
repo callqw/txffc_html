@@ -1,72 +1,70 @@
 <div>
-    <%= content.data[0].news_Title %>
-    <%= content.data[0].news_Description %>
-    <%= content.data[0].news_AvatarUrl %>
-    <%= content.data[0].news_CreateTime %>
-    <%= content.data[0].news_ImgUrl[0].url %>
-    <%= content.data[0].news_Label %>
-    <%= content.data[0].news_Pv %>
-    <%= content.data[0].news_Class %>
-    <div class="row">
-        <div class="col-xs-12 col-md-12">
-            <h4 style="font-weight: bold"><a href="#" target="_blank"><%= content.data[0].news_Title %></a> </h4>
-        </div>
-    </div>
-    <div class="row" style="padding-bottom: 10px">
-        <div class="col-xs-12 col-md-12">
-            <h5><span><%= content.data[0].news_Description %></span> </h5>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-md-4">
-            <a href="#" class="thumbnail">
-                <img src="<%=content.data[0].news_AvatarUrl%>" alt="...">
-            </a>
-        </div>
-        <div class="col-xs-4 col-md-4">
-            <a href="#" class="thumbnail">
-                <img src="<%=content.data[0].news_AvatarUrl%>" alt="...">
-            </a>
-        </div>
-        <div class="col-xs-4 col-md-4">
-            <a href="#" class="thumbnail">
-                <img src="<%=content.data[0].news_AvatarUrl%>" alt="...">
-            </a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-1 col-md-3">
-            <div class="media">
-                <div class="media-left">
-                    <a href="#">
-                        <img class="media-object" src="<%=content.data[0].news_AvatarUrl%>" alt="..." style="width: 30px;height: 30px;border-radius: 50%">
-                    </a>
-                </div>
-                <div class="media-body">
-                    <h5 class="media-heading" style="line-height: 30px"><a href="#" target="_blank">Media heading</a></h5>
-                </div>
+    <% for(var i=0; i<content.data.length; i++){ %>
+    <div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <h4 style="font-weight: bold"><a href="news.html/<%= content.data[i].news_Number %>" target="_blank"><%= content.data[i].news_Title %></a> </h4>
             </div>
         </div>
-        <div class="col-xs-3 col-md-3">
-            <div class="media">
-                <div class="media-body">
-                    <h5 class="media-heading" style="line-height: 30px"><a href="#" target="_blank"><%= content.data[0].news_Class %></a></h5>
-                </div>
+        <div class="row" style="padding-bottom: 10px">
+            <div class="col-xs-12 col-md-12">
+                <h5><span><%= content.data[i].news_Description %></span> </h5>
             </div>
         </div>
-        <div class="col-xs-4 col-md-3">
-            <div class="media">
-                <div class="media-body">
-                    <h5 class="media-heading" style="line-height: 30px"><a href="#" target="_blank"><%= content.data[0].news_Pv %></a></h5>
-                </div>
+        <div class="row" >
+            <div class="col-xs-4 col-md-4" >
+                <a href="news.html/<%= content.data[i].news_Number %>" target="_blank" class="thumbnail" style="height: 150px;overflow: hidden">
+                    <img src="<%=content.data[i].news_ImgUrl[0]%>" alt="..." style="width: 100%">
+                </a>
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <a href="news.html/<%= content.data[i].news_Number %>" target="_blank" class="thumbnail" style="height: 150px;overflow: hidden">
+                    <img src="<%=content.data[i].news_ImgUrl[1]%>" alt="..." style="width: 100%">
+                </a>
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <a href="news.html/<%= content.data[i].news_Number %>" target="_blank" class="thumbnail" style="height: 150px;overflow: hidden">
+                    <img src="<%=content.data[i].news_ImgUrl[2]%>" alt="...">
+                </a>
             </div>
         </div>
-        <div class="col-xs-4 col-md-3">
-            <div class="media">
-                <div class="media-body">
-                    <h5 class="media-heading" style="line-height: 30px"> <a href="#" target="_blank"><%= content.data[0].news_CreateTime %></a></h5>
+        <div class="row">
+            <div class="col-xs-1 col-md-3">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="<%=content.data[i].news_AvatarUrl%>" alt="..." style="width: 30px;height: 30px;border-radius: 50%">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading" style="line-height: 30px"><a href="news.html/<%= content.data[i].news_Number %>" target="_blank">Media heading</a></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-md-3">
+                <div class="media">
+                    <div class="media-body">
+                        <h5 class="media-heading" style="line-height: 30px"><a href="news.html/<%= content.data[i].news_Number %>" target="_blank"><%= content.data[i].news_Class %></a></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4 col-md-3">
+                <div class="media">
+                    <div class="media-body">
+                        <h5 class="media-heading" style="line-height: 30px"><a href="news.html/<%= content.data[i].news_Number %>" target="_blank"><%= content.data[i].news_Pv %></a></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4 col-md-3">
+                <div class="media">
+                    <div class="media-body">
+                        <h5 class="media-heading" style="line-height: 30px"> <span><%= content.data[i].news_CreateTime %></span></h5>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <%} %>
+
+
 </div>

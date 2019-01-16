@@ -84,4 +84,13 @@
         if(tableData == 'tableData'){
             $('html,body').animate({scrollTop:$('#'+tableData).offset().top},300)
         }
+    $(function () {
+        if(!window.localStorage){
+            alert("浏览器不支持localstorage");
+            return false;
+        }else{
+            var storage=window.localStorage;
+            $('#headerA li').eq(0).addClass('active')
+        }
+    })
 </script>

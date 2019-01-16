@@ -1,6 +1,3 @@
-/**
- * Created by xj on 2018/2/2.
- */
 var escapein = function (obj) {
     var s = "";
     if (obj.length == 0)
@@ -9,6 +6,7 @@ var escapein = function (obj) {
     s = s.replace(/</g, "&lt;");
     s = s.replace(/>/g, "&gtc;");
     s = s.replace(/ /g, "&nbsp;");
+    s = s.replace(/\\/g, "&#3c;");
     s = s.replace(/\'/g, "&#39;");
     s = s.replace(/\"/g, "&quot;");
     s = s.replace(/\n/g, "<br>");
@@ -22,6 +20,7 @@ var escapeOut = function (obj) {
     s = s.replace(/&lt;/g, "<");
     s = s.replace(/&gtc;/g, ">");
     s = s.replace(/&nbsp;/g, " ");
+    s = s.replace(/&#3c;/g, "\\");
     s = s.replace(/&#39;/g, "\'");
     s = s.replace(/&quot;/g, "\"");
     s = s.replace(/<br>/g, "\n");
@@ -29,10 +28,14 @@ var escapeOut = function (obj) {
 }
 var GB2312UnicodeConverter = {
     ToUnicode: function (str) {
-        return escape(str).toLocaleLowerCase().replace(/%u/gi, '\\u');
+        str = escape(str).toLocaleLowerCase().replace(/%u/gi, '\\u');
+        str = escapein(str)
+        return str;
     }
     , ToGB2312: function (str) {
-        return unescape(str.replace(/\\u/gi, '%u'));
+        str = escapeOut(str);
+        str = unescape(str.replace(/\\u/gi, '%u'));
+        return str;
     }
 };
 module.exports = {toUnicode:GB2312UnicodeConverter,escapein:escapein,escapeOut:escapeOut}

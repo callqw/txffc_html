@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-9 col-xs-12">
             <div class="row" style="padding-bottom: 10px">
@@ -7,8 +7,23 @@
                 </div>
             </div>
             <div class="row" style="padding-bottom: 10px">
-                <div class="col-xs-12 col-md-12">
-                    <p style="font-size: 16px;line-height: 26px"><%= content.data[0].news_Content %></p>
+                <div class="col-xs-12 col-md-3">
+                    <%- content.data[0].news_CreateTime %>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <%- content.data[0].news_UserId %>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <span style="padding-right: 5px">阅读数</span><%- content.data[0].news_Pv %>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <span style="padding-right: 5px">标签</span><%- content.data[0].news_Label %>
+                </div>
+                <div class="col-xs-12 col-md-12" style="border-bottom: 1px solid rgba(192, 192, 192, 0.59);margin: 20px 0 20px"></div>
+            </div>
+            <div class="row" style="padding-bottom: 10px">
+                <div class="col-xs-12 col-md-12" style="overflow: hidden">
+                    <%- content.data[0].news_Content %>
                 </div>
             </div>
         </div>
@@ -17,3 +32,14 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        if(!window.localStorage){
+            alert("浏览器不支持localstorage");
+            return false;
+        }else{
+            var storage=window.localStorage;
+            $('#headerA li').eq(1).addClass('active')
+        }
+    })
+</script>

@@ -1,0 +1,24 @@
+<form>
+    <input id="user" name="userName" type="text">
+    <input id="pass" name="password" type="password">
+    <button type="button" class="btn btn-primary" onclick="sub()">提交</button>
+</form>
+<script type="text/javascript">
+
+
+    function sub() {
+        var obj = {
+            user:$('#user').val(),
+            pass:$('#pass').val()
+        }
+        $.ajax({
+            url:'login',
+            type:'POST',
+            dataType:'json',
+            data:obj,
+            success: function (data) {
+                alert(data.state)
+            }
+        })
+    }
+</script>
