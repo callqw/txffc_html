@@ -11,6 +11,8 @@ const postEdit_insert = require('./postEdit/insert')
 const ueditor = require('./ueditor/ueUpload')
 const validationMiddleware = require('./validation/index')
 const login = require('./login/index')
+const signUp = require('./login/signUp')
+const sitemap = require('./siteMap/index')
 
 module.exports = {
     crawling: crawling, crawlingSelect: crawlingSelect,
@@ -18,5 +20,6 @@ module.exports = {
     postEdit:postEdit, postEdit_insert: postEdit_insert,
     ueditor:ueditor,
     validationMiddleware:validationMiddleware,
-    login:login
+    login:login, signUp:signUp,
+    sitemap: sitemap
 }

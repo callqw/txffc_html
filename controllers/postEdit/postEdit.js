@@ -6,6 +6,7 @@ const postEdit = async function (ctx, next) {
     // let indexPage= {};
     // indexPage.page = 1;
     // var indexRes = await modules.newsInsert();
+    console.log(ctx.state,'postEdit')
     var obj = {
         title:'写文章',
         description: '写文章',
@@ -13,6 +14,7 @@ const postEdit = async function (ctx, next) {
         keywords: '写文章',
     }
     await ctx.render('postEdit/index', obj)
+
 }
 module.exports= {
     postEdit: postEdit

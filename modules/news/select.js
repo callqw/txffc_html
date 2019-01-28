@@ -47,6 +47,24 @@ const newsSelectWithNewsNumber = function (obj) {
         });
     })
 }
+//根据用户查询
+const newsSelectSitemap = function () {
+
+    return new Promise((resolve,reject)=> {
+        db.query('SELECT * FROM `news`',async function (err, result) {
+            if (err) throw err;
+            for(var i=0; i<result.length; i++) {
+                result[i].news_CreateTime = moment(result[i].news_CreateTime).format('YYYY-MM-DD')
+                result[i].news_Content = unicode.toUnicode.ToGB2312(result[i].news_Content)
+                result[i].news_ImgUrl = result[i].news_ImgUrl.split(',')
+            }
+            resolve({
+                loginState: 'LOGIN_STATE.SUCCESS',
+                data: result
+            });
+        });
+    })
+}
 module.exports = {
-    newsSelect: newsSelect, newsSelectWithNewsNumber:newsSelectWithNewsNumber
+    newsSelect: newsSelect, newsSelectWithNewsNumber:newsSelectWithNewsNumber, newsSelectSitemap: newsSelectSitemap
 }

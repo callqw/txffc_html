@@ -16,6 +16,7 @@ const select = async function (ctx, next) {
         contentData: indexRes,
         tableData: null,
     }
+
     await ctx.render('index',obj);
 }
 module.exports= {

@@ -10,12 +10,26 @@ const Router = require('koa-router')()
 const render = require('koa-ejs');
 const path = require('path');
 const app = new Koa();
-const session = require('koa-session');
 const logger    = require('koa-logger');
 app.use(logger());
 const __static  = require('koa-static');
+const session = require('koa-session');
+app.keys = ['some secret hurr'];
 
-
+const CONFIG = {
+    key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
+    /** (number || 'session') maxAge in ms (default is 1 days) */
+    /** 'session' will result in a cookie that expires when session/browser is closed */
+    /** Warning: If a session cookie is stolen, this cookie will never expire */
+    maxAge: 100000,
+    autoCommit: true, /** (boolean) automatically commit headers (default true) */
+    overwrite: true, /** (boolean) can overwrite or not (default true) */
+    httpOnly: true, /** (boolean) httpOnly or not (default true) */
+    signed: true, /** (boolean) signed or not (default true) */
+    rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
+    renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
+};
+app.use(session(CONFIG, app));
 // parse request body:
 app.use(bodyParser());
 
@@ -23,23 +37,15 @@ app.use((ctx, next )=> {
     const start = Date.now();
     return next().then(() => {
         const ms = Date.now() - start;
-        if (ctx.response.status != 200){
-                ctx.redirect('/index.html');
+        if (ctx.response.status == 200 ||ctx.response.status == 302){
+              return;
+        }else {
+            ctx.redirect('/index.html');
         }
         console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
     });
 })
-app.keys = ['some secret hurr'];
-const CONFIG = {
-    key: 'koa:sess',   //cookie key (default is koa:sess)
-    maxAge: 86400000,  // cookie的过期时间 maxAge in ms (default is 1 days)
-    overwrite: true,  //是否可以overwrite    (默认default true)
-    httpOnly: true, //cookie是否只有服务器端可以访问 httpOnly or not (default true)
-    signed: true,   //签名默认true
-    rolling: false,  //在每次请求时强行设置cookie，这将重置cookie过期时间（默认：false）
-    renew: false,  //(boolean) renew session when session is nearly expired,
-};
-app.use(session(CONFIG, app));
+
 render(app, {
     root: path.join(__dirname, 'views'),
     layout: 'default',

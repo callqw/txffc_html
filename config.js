@@ -2,7 +2,13 @@
  * Created by Administrator on 2018/10/19.
  */
 const CONF = {
+    url:"http://www.8989o.com",
+    sitemapPort: '',
+    // url:"localhost",
+    // sitemapPort: ':3000',
+
     port: '3000',
+
     rootPathname: '',
 
     // 微信小程序 App ID
@@ -41,7 +47,7 @@ const CONF = {
     },
 
     // 微信登录态有效期
-    wxLoginExpires: 3600,
+    wxLoginExpires: 10,
     wxMessageToken: 'abcdefgh'
 }
 
